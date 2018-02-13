@@ -8,9 +8,7 @@ See "LICENSE_BSD2.txt" for details.
 
 module seL4.seL4
 
-%include C "sel4/sel4.h"
+include(Syscalls.idr.m4)
 
-public export
-seL4_DebugPutChar : Char -> IO ()
-seL4_DebugPutChar c = foreign FFI_C "seL4_DebugPutChar" (Char -> IO ()) c
+%include C "sel4/sel4.h"
 
