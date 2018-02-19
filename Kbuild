@@ -11,26 +11,31 @@
 LIB_NAME := idris-libsel4-ffi
 LIB_DIR := $(SEL4_LIBS_PATH)/$(LIB_NAME)
 SEL4_FFI_BUILD_DIR := $(BUILD_BASE)/$(LIB_NAME)
-M4FILES := $(shell find -L $(LIB_DIR) -name '*.idr.m4')
+M4FILES := $(patsubst $(LIB_DIR)/src/%,%,$(wildcard $(LIB_DIR)/src/seL4/*.idr.m4))
+IDRFILES := $(addprefix $(SEL4_FFI_BUILD_DIR)/,$(patsubst src/%,%,$(M4FILES:.idr.m4=.idr)))
 AUTOCONF_FLAGS_M4 := $(SEL4_FFI_BUILD_DIR)/autoconf.flags.m4
-SEL4_IDR := $(SEL4_FFI_BUILD_DIR)/seL4/seL4.idr
+BUILD_DIRS := \
+    $(SEL4_FFI_BUILD_DIR) \
+    $(SEL4_FFI_BUILD_DIR)/seL4
 
 # Generate a file containing command line flags that m4 understands
 # from the autoconf.h file.
-$(AUTOCONF_FLAGS_M4): $(AUTOCONF_H_FILE)
-	@echo "Generating autoconf.flags.m4"
-	$(Q)mkdir -p $(SEL4_FFI_BUILD_DIR)
+$(AUTOCONF_FLAGS_M4): $(AUTOCONF_H_FILE) | $(BUILD_DIRS)
+	@echo "[GEN] $@"
 	$(Q)awk '$$1 ~ /#define/ {print "-D" $$2}' $(AUTOCONF_H_FILE) | \
 		tr '\n' ' ' > $(AUTOCONF_FLAGS_M4)
 
-# Generate seL4.idr
-$(SEL4_IDR): $(AUTOCONF_FLAGS_M4) $(M4FILES)
-	@echo "Precompiling idris-libsel4-ffi"
-	$(Q)mkdir -p $(SEL4_FFI_BUILD_DIR)/seL4
-	$(Q)m4 -I $(LIB_DIR)/src/seL4 \
-		$(shell cat $(AUTOCONF_FLAGS_M4)) \
-		$(LIB_DIR)/src/seL4/seL4.idr.m4 > \
-		$(SEL4_IDR)
+# Create build dirs
+$(BUILD_DIRS):
+	@echo "[MKDIR] $@"
+	$(Q)mkdir -p $@
 
-.PHONY: $(LIB_NAME)
-$(LIB_NAME): $(SEL4_IDR)
+vpath %.idr.m4 $(LIB_DIR)/src
+
+# Generate Idris files from the m4 and autoconf files
+$(SEL4_FFI_BUILD_DIR)/%.idr: %.idr.m4 $(AUTOCONF_FLAGS_M4) | $(BUILD_DIRS)
+	@echo "[M4] $@"
+	$(Q)m4 $(shell cat $(AUTOCONF_FLAGS_M4)) $< > $@
+
+# Target to generate all Idris files in this library
+$(LIB_NAME): $(IDRFILES)

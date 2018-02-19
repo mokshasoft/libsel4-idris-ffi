@@ -8,6 +8,8 @@ the BSD 2-Clause license. Note that NO WARRANTY is provided.
 See "LICENSE_BSD2.txt" for details.
 -}
 
+module seL4.Syscalls
+
 ifdef(`CONFIG_PRINTING', `
 
 public export

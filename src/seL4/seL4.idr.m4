@@ -8,7 +8,7 @@ See "LICENSE_BSD2.txt" for details.
 
 module seL4.seL4
 
-include(Syscalls.idr.m4)
+import public seL4.Syscalls
 
 %include C "sel4/sel4.h"
 
