@@ -1,5 +1,3 @@
--- Included from Syscalls.idr.m4
-
 {-
 Copyright 2018, Mokshasoft AB (mokshasoft.com)
 
@@ -21,5 +19,3 @@ seL4_DebugDumpScheduler : IO ()
 seL4_DebugDumpScheduler = foreign FFI_C "seL4_DebugDumpScheduler" (IO ())
 
 ')
-
--- End of Syscalls.idr.m4

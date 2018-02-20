@@ -1,5 +1,3 @@
--- Included from BootinfoTypes.idr.m4
-
 {-
 Copyright 2018, Mokshasoft AB (mokshasoft.com)
 
@@ -140,5 +138,3 @@ createDummyBootInfo =
         14
         15
         (MKSeL4_SlotRegion 16 17)
-
--- End of BootinfoTypes.idr.m4

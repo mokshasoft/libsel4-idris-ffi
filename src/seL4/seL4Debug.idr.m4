@@ -1,5 +1,3 @@
--- Included from seL4Debug.idr.m4
-
 {-
 Copyright 2018, Mokshasoft AB (mokshasoft.com)
 
@@ -36,5 +34,3 @@ debugPrintBootInfo info = do
   debugPrint (show info)
 
 ')
-
--- End of seL4Debug.idr.m4
