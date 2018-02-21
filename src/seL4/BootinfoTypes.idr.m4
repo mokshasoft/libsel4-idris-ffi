@@ -10,6 +10,8 @@ See "LICENSE_BSD2.txt" for details.
   ported from file kernel/libsel4/include/sel4/bootinfo_types.h
 -}
 
+module seL4.BootinfoTypes
+
 -- caps with fixed slot positions in the root CNode
 public export
 data Sel4Cap =
