@@ -37,5 +37,11 @@ $(SEL4_FFI_BUILD_DIR)/%.idr: %.idr.m4 $(AUTOCONF_FLAGS_M4) | $(BUILD_DIRS)
 	@echo "[M4] $@"
 	$(Q)m4 $(shell cat $(AUTOCONF_FLAGS_M4)) $< > $@
 
-# Target to generate all Idris files in this library
-$(LIB_NAME): $(IDRFILES)
+# Compile the package
+$(SEL4_FFI_BUILD_DIR)/00libsel4ffi-idx.ibc: $(IDRFILES)
+	@echo "[IDRIS] compiling $@"
+	$(Q)( cd $(SEL4_FFI_BUILD_DIR) ; \
+	  idris --build $(LIB_DIR)/libsel4ffi.ipkg)
+
+# Dummy target to compile everything in this repository
+$(LIB_NAME): $(SEL4_FFI_BUILD_DIR)/00libsel4ffi-idx.ibc
