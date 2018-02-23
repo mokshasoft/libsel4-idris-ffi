@@ -12,6 +12,9 @@ See "LICENSE_BSD2.txt" for details.
 
 module seL4.BootinfoTypes
 
+import seL4.Types
+import seL4.SharedTypes
+
 -- caps with fixed slot positions in the root CNode
 public export
 data Sel4Cap =
@@ -28,26 +31,6 @@ data Sel4Cap =
   | SeL4_CapInitThreadIPCBuffer -- initial thread's IPC buffer frame cap
   | SeL4_CapDomain              -- global domain controller cap
   | SeL4_NumInitialCaps
-
-public export
-SeL4_Word : Type
-SeL4_Word = Int
-
-public export
-SeL4_Uint8 : Type
-SeL4_Uint8 = Int
-
-public export
-SeL4_NodeId : Type
-SeL4_NodeId = Int
-
-public export
-SeL4_Domain : Type
-SeL4_Domain = Int
-
-public export
-SeL4_IPCBufferP : Type
-SeL4_IPCBufferP = Int
 
 public export
 SeL4_SlotPos : Type
