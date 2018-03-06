@@ -10,7 +10,7 @@ libs-y += libidris-libsel4-ffi
 
 # Precompile the Idris files in the libsel4 FFI according to autoconf.h
 
-LIB_NAME := idris-libsel4-ffi
+LIB_NAME := libidris-libsel4-ffi
 LIB_DIR := $(SEL4_LIBS_PATH)/$(LIB_NAME)
 SEL4_FFI_BUILD_DIR := $(BUILD_BASE)/$(LIB_NAME)
 M4FILES := $(patsubst $(LIB_DIR)/src/%,%,$(wildcard $(LIB_DIR)/src/seL4/*.idr.m4))
