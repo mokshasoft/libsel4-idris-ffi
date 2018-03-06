@@ -1,7 +1,10 @@
 package libsel4ffi
 
+pkgs = contrib
+
 modules = seL4.seL4
         , seL4.BootinfoTypes
+        , seL4.Bootinfo
         , seL4.SharedTypes
         , seL4.Types
         , seL4.seL4Debug

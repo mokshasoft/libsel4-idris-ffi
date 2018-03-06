@@ -14,6 +14,7 @@ module seL4.seL4
 
 import public seL4.Syscalls
 import public seL4.BootinfoTypes
+import public seL4.Bootinfo
 import public seL4.seL4Debug
 
 %include C "sel4/sel4.h"

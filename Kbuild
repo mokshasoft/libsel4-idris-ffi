@@ -6,6 +6,8 @@
 # See "LICENSE_BSD2.txt" for details.
 #
 
+libs-y += libidris-libsel4-ffi
+
 # Precompile the Idris files in the libsel4 FFI according to autoconf.h
 
 LIB_NAME := idris-libsel4-ffi
@@ -43,5 +45,5 @@ $(SEL4_FFI_BUILD_DIR)/00libsel4ffi-idx.ibc: $(IDRFILES)
 	$(Q)( cd $(SEL4_FFI_BUILD_DIR) ; \
 	  idris --build $(LIB_DIR)/libsel4ffi.ipkg)
 
-# Dummy target to compile everything in this repository
-$(LIB_NAME): $(SEL4_FFI_BUILD_DIR)/00libsel4ffi-idx.ibc
+# Compile everything including glue code
+libidris-libsel4-ffi: $(libc) common libsel4 $(SEL4_FFI_BUILD_DIR)/00libsel4ffi-idx.ibc
