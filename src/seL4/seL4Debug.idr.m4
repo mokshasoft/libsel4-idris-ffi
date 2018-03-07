@@ -13,22 +13,20 @@ import Prelude.Strings
 import seL4.BootinfoTypes
 import seL4.Syscalls
 
-public export
+%access public export
+%default total
+
 (>>) : Monad m => m a -> m b -> m b
 m >> k = m >>= \_ => k
 
-public export
 mapM_ : (Monad m, Foldable t) => (a -> m b) -> t a -> m ()
 mapM_ f xs = foldr ((>>) . f) (pure ()) xs
 
-public export
 debugPrint : String -> IO ()
 debugPrint str = mapM_ seL4_DebugPutChar (unpack str)
 
-
 ifdef(`CONFIG_USER_DEBUG_BUILD', `
 
-public export
 debugPrintBootInfo : SeL4_BootInfo -> IO ()
 debugPrintBootInfo info = do
   debugPrint (show info)

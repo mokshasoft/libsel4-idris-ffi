@@ -15,8 +15,10 @@ module seL4.BootinfoTypes
 import seL4.Types
 import seL4.SharedTypes
 
+%access public export
+%default total
+
 -- caps with fixed slot positions in the root CNode
-public export
 data Sel4Cap =
     SeL4_CapNull                -- null cap
   | SeL4_CapInitThreadTCB       -- initial thread's TCB cap
@@ -32,17 +34,14 @@ data Sel4Cap =
   | SeL4_CapDomain              -- global domain controller cap
   | SeL4_NumInitialCaps
 
-public export
 SeL4_SlotPos : Type
 SeL4_SlotPos = SeL4_Word
 
-public export
 record SeL4_SlotRegion where
     constructor MKSeL4_SlotRegion
     start : SeL4_SlotPos
     end : SeL4_SlotPos
 
-public export
 record SeL4_UntypedDesc where
     constructor MKSeL4_UntypedDesc
     paddr : SeL4_Word     -- physical address of untyped cap
@@ -51,7 +50,6 @@ record SeL4_UntypedDesc where
     sizeBits : SeL4_Uint8 -- size (2^n) bytes of each untyped
     isDevice : SeL4_Uint8 -- whether the untyped is a device
 
-public export
 record SeL4_BootInfo where
     constructor MKSeL4_BootInfo
     extraLen : SeL4_Word              -- length of any additional bootinfo information
@@ -71,7 +69,6 @@ record SeL4_BootInfo where
     untyped : SeL4_SlotRegion         -- untyped-object caps (untyped caps)
     -- seL4_UntypedDesc  untypedList[CONFIG_MAX_NUM_BOOTINFO_UNTYPED_CAPS]; -- information about each untyped
 
-public export
 record SeL4_BootInfoHeader where
     constructor MKSeL4_BootInfoHeader
     -- identifier of the following chunk. IDs are arch/platform specific
@@ -80,12 +77,10 @@ record SeL4_BootInfoHeader where
     len : SeL4_Word
 
 
-public export
 Show SeL4_SlotRegion where
     show sl =
         "[" ++ show (start sl) ++ " --> " ++ show (end sl) ++ ")"
 
-public export
 Show SeL4_BootInfo where
     show bi =
         "Node " ++ show (nodeID bi) ++ " of " ++ show (numNodes bi) ++ "\n" ++
@@ -104,7 +99,6 @@ Show SeL4_BootInfo where
         "unimplemented...\n"
 
 -- A function to create a dummy BootInfo before reading the proper one from the system.
-public export
 createDummyBootInfo : SeL4_BootInfo
 createDummyBootInfo =
     MKSeL4_BootInfo

@@ -13,12 +13,12 @@ import seL4.BootinfoTypes
 import seL4.seL4Debug
 
 %include C "ffi-bootinfo.h"
+%access public export
+%default total
 
-public export
 get_bootinfo_ptr : IO Ptr
 get_bootinfo_ptr = foreign FFI_C "get_bootinfo" (IO Ptr)
 
-public export
 seL4_GetBootinfo : IO SeL4_BootInfo
 seL4_GetBootinfo = do
     ptr <- get_bootinfo_ptr

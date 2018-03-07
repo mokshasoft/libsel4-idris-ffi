@@ -12,18 +12,17 @@ See "LICENSE_BSD2.txt" for details.
 
 module seL4.Types
 
-public export
+%access public export
+%default total
+
 SeL4_Word : Type
 SeL4_Word = Int
 
-public export
 SeL4_Uint8 : Type
 SeL4_Uint8 = Int
 
-public export
 SeL4_NodeId : Type
 SeL4_NodeId = Int
 
-public export
 SeL4_Domain : Type
 SeL4_Domain = Int

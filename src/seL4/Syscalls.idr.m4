@@ -8,13 +8,14 @@ See "LICENSE_BSD2.txt" for details.
 
 module seL4.Syscalls
 
+%access public export
+%default total
+
 ifdef(`CONFIG_PRINTING', `
 
-public export
 seL4_DebugPutChar : Char -> IO ()
 seL4_DebugPutChar c = foreign FFI_C "seL4_DebugPutChar" (Char -> IO ()) c
 
-public export
 seL4_DebugDumpScheduler : IO ()
 seL4_DebugDumpScheduler = foreign FFI_C "seL4_DebugDumpScheduler" (IO ())
 

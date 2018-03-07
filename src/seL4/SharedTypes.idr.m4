@@ -12,6 +12,8 @@ See "LICENSE_BSD2.txt" for details.
 
 module seL4.SharedTypes
 
-public export
+%access public export
+%default total
+
 SeL4_IPCBufferP : Type
 SeL4_IPCBufferP = Int -- dummy definition at the moment
