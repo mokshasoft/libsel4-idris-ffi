@@ -10,6 +10,7 @@ module seL4.Bootinfo
 
 import seL4.BootinfoTypes
 import seL4.seL4Debug
+import seL4.SharedTypes
 import seL4.Types
 
 %include C "ffi-bootinfo.h"
@@ -68,6 +69,7 @@ seL4_GetBootinfo = do
                , nodeID = _nodeID
                , numNodes = _numNodes
                , numIOPTLevels = _numIOPTLevels
+               , ipcBuffer = _ipcBuffer
                , empty = _empty
                , sharedFrames = _sharedFrames
                , userImageFrames = _userImageFrames
