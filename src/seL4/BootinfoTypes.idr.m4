@@ -19,7 +19,7 @@ import seL4.SharedTypes
 %default total
 
 -- caps with fixed slot positions in the root CNode
-data Sel4Cap =
+data SeL4Cap =
     SeL4_CapNull                -- null cap
   | SeL4_CapInitThreadTCB       -- initial thread's TCB cap
   | SeL4_CapInitThreadCNode     -- initial thread's root CNode cap
