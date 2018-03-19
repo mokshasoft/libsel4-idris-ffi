@@ -12,8 +12,13 @@ See "LICENSE_BSD2.txt" for details.
 
 module seL4.SharedTypes
 
+import seL4.Types
+
 %access public export
 %default total
 
 SeL4_IPCBufferP : Type
 SeL4_IPCBufferP = Int -- dummy definition at the moment
+
+SeL4_MessageInfo : Type
+SeL4_MessageInfo = SeL4_Word

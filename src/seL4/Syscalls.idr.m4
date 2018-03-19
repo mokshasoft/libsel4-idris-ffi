@@ -12,10 +12,18 @@ See "LICENSE_BSD2.txt" for details.
 
 module seL4.Syscalls
 
+import seL4.SharedTypes
+
+%include C "ffi-syscalls.h"
+
 %access public export
 %default total
 
 -- void seL4_Send(seL4_CPtr dest, seL4_MessageInfo_t msgInfo);
+seL4_Send : Int -> SeL4_MessageInfo -> IO ()
+seL4_Send dest msgInfo =
+    foreign FFI_C "ffi_seL4_Send" (Int -> SeL4_MessageInfo -> IO ()) dest msgInfo
+
 -- seL4_MessageInfo_t seL4_Recv(seL4_CPtr src, seL4_Word* sender);
 -- seL4_MessageInfo_t seL4_Call(seL4_CPtr dest, seL4_MessageInfo_t msgInfo);
 -- void seL4_Reply(seL4_MessageInfo_t msgInfo);

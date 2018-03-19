@@ -11,7 +11,8 @@ TARGETS := libidris-libsel4-ffi.a
 
 # Source files required to build the target
 FILES := \
-    ffi-bootinfo.c
+    ffi-bootinfo.c \
+    ffi-syscalls.c
 CFILES := $(addprefix src/glue/,$(FILES))
 
 # Libraries needed by the library
