@@ -1,6 +1,7 @@
 package libsel4ffi
 
 modules = seL4.seL4
+        , seL4.Functions
         , seL4.BootinfoTypes
         , seL4.Bootinfo
         , seL4.SharedTypes

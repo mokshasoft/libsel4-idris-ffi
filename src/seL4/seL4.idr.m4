@@ -13,6 +13,7 @@ See "LICENSE_BSD2.txt" for details.
 module seL4.seL4
 
 import public seL4.Syscalls
+import public seL4.Functions
 import public seL4.BootinfoTypes
 import public seL4.Bootinfo
 import public seL4.SharedTypes
