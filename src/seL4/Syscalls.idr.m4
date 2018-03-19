@@ -54,7 +54,11 @@ seL4_DebugSnapshot : IO ()
 seL4_DebugSnapshot = foreign FFI_C "seL4_DebugSnapshot" (IO ())
 
 -- seL4_Uint32 seL4_DebugCapIdentify(seL4_CPtr cap);
+
 -- void seL4_DebugNameThread(seL4_CPtr tcb, const char *name);
+seL4_DebugNameThread : Int -> String -> IO ()
+seL4_DebugNameThread cap name =
+    foreign FFI_C "seL4_DebugNameThread" (Int -> String -> IO ()) cap name
 
 ')
 

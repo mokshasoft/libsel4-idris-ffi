@@ -34,6 +34,21 @@ data SeL4Cap =
   | SeL4_CapDomain              -- global domain controller cap
   | SeL4_NumInitialCaps
 
+Cast SeL4Cap Int where
+    cast SeL4_CapNull                = 0
+    cast SeL4_CapInitThreadTCB       = 1
+    cast SeL4_CapInitThreadCNode     = 2
+    cast SeL4_CapInitThreadVSpace    = 3
+    cast SeL4_CapIRQControl          = 4
+    cast SeL4_CapASIDControl         = 5
+    cast SeL4_CapInitThreadASIDPool  = 6
+    cast SeL4_CapIOPort              = 7
+    cast SeL4_CapIOSpace             = 8
+    cast SeL4_CapBootInfoFrame       = 9
+    cast SeL4_CapInitThreadIPCBuffer = 10
+    cast SeL4_CapDomain              = 11
+    cast SeL4_NumInitialCaps         = 12
+
 SeL4_SlotPos : Type
 SeL4_SlotPos = SeL4_Word
 

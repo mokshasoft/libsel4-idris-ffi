@@ -9,10 +9,12 @@
 #include "ffi-bootinfo.h"
 #include <stdlib.h> // getent
 #include <stdio.h> // sscanf
+#include <sel4/sel4.h>
 
 seL4_BootInfo * get_bootinfo(void) {
     char *bootinfo_addr_str = getenv("bootinfo");
-    void *bootinfo;
+    seL4_BootInfo *bootinfo;
     sscanf(bootinfo_addr_str, "%p", &bootinfo);
-    return (seL4_BootInfo*)bootinfo;
+    seL4_SetUserData((seL4_Word)bootinfo->ipcBuffer);
+    return bootinfo;
 }
