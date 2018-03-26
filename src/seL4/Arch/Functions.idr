@@ -10,7 +10,7 @@ See "LICENSE_BSD2.txt" for details.
   ported from kernel/libsel4/arch_include/<arch>/sel4/arch/functions.h
 -}
 
-module seL4.Functions
+module seL4.Arch.Functions
 
 %access public export
 %default total
