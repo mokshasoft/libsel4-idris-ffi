@@ -144,7 +144,7 @@ function(idris_add_app app srcs)
     target_link_libraries(
         ${app}-main
         Configuration
-        libsel4-idris-rts
+        sel4-idris-rts
         muslc
         ${app_libs}
     )
@@ -160,15 +160,15 @@ function(idris_add_app app srcs)
 
     target_link_libraries(
         ${app}
-        --start-group
-        idris-rts-bare-metal
+	-Wl,--start-group
+        sel4-idris-rts
         ${app}-main
         Configuration
         ${app_libs}
         sel4
         muslc
-        --end-group
-        --gc-sections
+	-Wl,--end-group
+	-Wl,--gc-sections
         utils
         sel4muslcsys
         sel4platsupport
