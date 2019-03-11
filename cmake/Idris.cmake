@@ -161,9 +161,9 @@ function(idris_add_app app srcs)
     target_link_libraries(
         ${app}
 	-Wl,--start-group
+        Configuration
         sel4-idris-rts
         ${app}-main
-        Configuration
         ${app_libs}
         sel4
         muslc
